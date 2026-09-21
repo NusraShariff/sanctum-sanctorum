@@ -135,3 +135,9 @@ with your virtual environment activated.)
 Each test gets a fresh in-memory database and a **frozen clock** (`clock.advance(days=15)`),
 so tests are fast and deterministic. Endpoints that haven't been built yet return
 `501 Not implemented`.
+
+
+## API access
+
+When the application is running, the interactive API documentation is available
+at `/docs`, and the health check is available at `/health`.
