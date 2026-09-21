@@ -1,4 +1,4 @@
-Live URL: pending deployment
+Live URL: https://sanctum-sanctorum-1n4b.onrender.com
 
 ## Completed
 
@@ -23,8 +23,8 @@ Live URL: pending deployment
 
 ## Remaining work
 
-- Deploy the application to a public host and replace the pending URL above.
-- Add the deployment URL and any seeded login/member instructions after deployment.
+- The Render deployment uses the default local SQLite database. The service is suitable for
+	demonstration, but free instances may reset local database data after restarts or redeploys.
 
 ## AI usage
 
