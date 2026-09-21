@@ -29,3 +29,5 @@ Live URL: https://sanctum-sanctorum-1n4b.onrender.com
 ## AI usage
 
 GitHub Copilot was used to inspect the existing implementation and specification, identify incomplete behavior, propose focused changes, and explain the reasoning behind each change. Every change was reviewed against the specification and verified with the test suite. The initial assumption that member statistics could reuse the loan status helper would have introduced a circular import, so that approach was replaced with the equivalent local clock-based calculation.
+Verified that the full test suite passes with 202 tests.
+Verified the application health endpoint and API documentation after deployment.
