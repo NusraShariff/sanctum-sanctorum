@@ -20,6 +20,7 @@ Live URL: https://sanctum-sanctorum-1n4b.onrender.com
 
 - `py -m pytest` -> 202 passed.
 - The prescribed `uv` command was unavailable in the local PowerShell PATH, so the equivalent Python test command was used.
+- Verified that the application starts successfully and the API routes are available through the FastAPI application.
 
 ## Remaining work
 
