@@ -76,7 +76,9 @@ def list_books(
     if max_price is not None:
         query = query.where(Book.price_cents <= max_price)
 
-    total = db.scalar(select(func.count()).select_from(query.subquery())) or 0
+
+    total= db.scalar(select(func.count()).select_from(query.subquery())) or 0
+
     if sort == "title":
         ordering = (Book.title.asc(), Book.id.asc())
     elif sort == "-title":
