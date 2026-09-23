@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Dict
 
 from fastapi import HTTPException
+from sqlalchemy import update
 from sqlalchemy.orm import Session
 
 from app.models import Book, Member, MemberTier, Order, OrderItem, OrderStatus
@@ -50,15 +51,18 @@ def create_order(db: Session, data: OrderCreate, now: datetime) -> Order:
 
     if any(book.restricted for _, book in books):
         ensure_can_access_restricted(member)
-    for item, book in books:
-        if book.stock < item.quantity:
-            raise HTTPException(status_code=409, detail="Insufficient stock")
-
     order_items = []
     subtotal = 0
     total_quantity = 0
     for item, book in books:
-        book.stock -= item.quantity
+        result = db.execute(
+            update(Book)
+            .where(Book.id == book.id, Book.stock >= item.quantity)
+            .values(stock=Book.stock - item.quantity)
+        )
+        if result.rowcount != 1:
+            db.rollback()
+            raise HTTPException(status_code=409, detail="Insufficient stock")
         line_total = book.price_cents * item.quantity
         subtotal += line_total
         total_quantity += item.quantity
@@ -112,7 +116,11 @@ def cancel_order(db: Session, order_id: int) -> Order:
     if order.status != OrderStatus.PENDING.value:
         raise HTTPException(status_code=409, detail=f"Cannot cancel an order that is {order.status}")
     for item in order.items:
-        item.book.stock += item.quantity
+        db.execute(
+            update(Book)
+            .where(Book.id == item.book_id)
+            .values(stock=Book.stock + item.quantity)
+        )
     order.status = OrderStatus.CANCELLED.value
     db.commit()
     db.refresh(order)
