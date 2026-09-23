@@ -1,4 +1,4 @@
-Live URL: https://sanctum-sanctorum-1n4b.onrender.com
+Live URL: https://sanctum-sanctorum-1n4b.onrender.com/
 
 ## Completed
 
@@ -8,6 +8,10 @@ Live URL: https://sanctum-sanctorum-1n4b.onrender.com
 - Completed the loan model with due dates, returns, and persisted late fees.
 - Implemented member activity statistics and verified reports.
 - Preserved the existing service/router separation and injected clock dependency.
+- Added paginated `GET /members` results with total, limit, and offset metadata.
+- Made stock reservation atomic with a conditional database update, preventing concurrent
+	orders from reserving the same final copy.
+- Added focused optional tests for member pagination and all-or-nothing stock reservation.
 
 ## Architectural decisions
 
@@ -18,16 +22,13 @@ Live URL: https://sanctum-sanctorum-1n4b.onrender.com
 
 ## Verification
 
-## Verification
-
-- `py -m pytest` -> 202 passed.
+- `py -m pytest` -> 204 passed.
 - The prescribed `uv` command was unavailable in the local PowerShell PATH, so the equivalent Python test command was used.
 - Verified the application health endpoint and API documentation after deployment.
 
 ## Remaining work
 
-- The Render deployment uses the default local SQLite database. The service is suitable for
-	demonstration, but free instances may reset local database data after restarts or redeploys.
+- The Render deployment uses the default local SQLite database. The service is suitable for demonstration, but free instances may reset local database data after restarts or redeploys.
 
 ## AI usage
 
