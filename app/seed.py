@@ -22,10 +22,10 @@ SEED_BOOKS = [
 ]
 
 SEED_MEMBERS = [
-    {"name": "Wong Li", "email": "wong@example.com", "tier": MemberTier.SUPREME},
-    {"name": "Christine Palmer", "email": "christine@example.com", "tier": MemberTier.MASTER},
-    {"name": "Jonathan Pangborn", "email": "jonathan@example.com", "tier": MemberTier.ADEPT},
-    {"name": "Sara Lin", "email": "sara@example.com", "tier": MemberTier.APPRENTICE},
+    {"name": "Wong Li", "email": "wong@example.com", "tier": MemberTier.SUPREME}, #id 1
+    {"name": "Christine Palmer", "email": "christine@example.com", "tier": MemberTier.MASTER}, #id 2
+    {"name": "Jonathan Pangborn", "email": "jonathan@example.com", "tier": MemberTier.ADEPT}, #id 3
+    {"name": "Sara Lin", "email": "sara@example.com", "tier": MemberTier.APPRENTICE}, #id 4
 ]
 
 
